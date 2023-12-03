@@ -9,7 +9,7 @@ include('header.php')
 <section id="slider-area">
     <div class="slider-active-wrap owl-carousel text-center text-md-left">
         <!-- Single Slide Item Start -->
-        <div class="single-slide-wrap slide-bg-1">
+        <div class="image"  style="background-image: url(../backend/storage/default/uiu.png); height: 1280px; width:1920px">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">

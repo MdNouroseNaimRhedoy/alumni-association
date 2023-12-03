@@ -29,7 +29,8 @@ if (isset($_POST['title']) && isset($_POST['content'])){
             $sql = "INSERT INTO success_story (title, content, user_id_fk, cover_photo)
             VALUES ('$title', '$content', '$user_id', '$unique_file_name')";
 
-            // query execute
+//            echo $sql;
+
             $conn->query($sql);
 
             echo "<script>alert('Successfully Posted')</script>";

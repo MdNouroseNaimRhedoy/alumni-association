@@ -3,10 +3,10 @@
 include('loginCheck.php');
 include('header.php');
 
-#Success story  permission check, only admin ca
 if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
     $details = $_SESSION['user_details'];
     if($details->account_type == '2'){
+        echo"  <script> alert('You don\'t have permission!')</script>";
         echo"  <script>location.assign('index.php')</script>";
     }
 }

@@ -74,6 +74,7 @@ session_start();
     <!-- sweet alert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
 </head>
 <body>
 <header id="header-area">
@@ -83,8 +84,23 @@ session_start();
             <div class="row">
                 <div class="col-lg-6 col-sm-7 col-7">
                     <div class="preheader-left">
-                        <a href="mailto:info@construc.com"><strong>Email:</strong> info@construc.com</a>
-                        <a href="mailto:info@construc.com"><strong>Hotline:</strong> 880 454 5477</a>
+                        <?php
+                        if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+                            $account_type = '';
+                            if ($_SESSION['user_details']->account_type == 1) {
+                                $account_type = 'Committee Member';
+                            } else if ($_SESSION['user_details']->account_type == 2) {
+                                $account_type = 'General Member';
+                            } else {
+                                $account_type = 'Admin';
+                            }
+                            ?>
+                            <a ><strong>Membership Status: </strong><?php echo $account_type ?> </a>
+                        <?php
+                        }
+                        ?>
+
+<!--                        <a href="mailto:info@construc.com"><strong>Hotline:</strong> 880 454 5477</a>-->
                     </div>
                 </div>
 
@@ -94,15 +110,15 @@ session_start();
 //                                echo '<pre>';
 //                                print_r($_SESSION);
 //                                echo '/<pre>';
-                        #
-                        if(isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in']== true){
-                                echo '<a  class="btn-auth btn-auth-rev" >';
-                                echo $_SESSION['user_details']->name;
-                                echo '</a>';
+                        if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+                            echo '<a  class="btn-auth btn-auth-rev" >';
 
-                                echo '<a  class="btn-auth btn-auth-rev" href="logout.php" >';
-                                echo "Logout";
-                                echo '</a>';
+                            echo $_SESSION['user_details']->name;
+                            echo '</a>';
+
+                            echo '<a  class="btn-auth btn-auth-rev" href="logout.php" >';
+                            echo "Logout";
+                            echo '</a>';
                         }
                         else{
                             echo ' <a title="Login" class="btn-auth btn-auth-rev" href="register.php">Login</a>
@@ -132,33 +148,43 @@ session_start();
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
                                 <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                                <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
-                                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+<!--                                Job post navbar-->
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" data-toggle="dropdown" role="button">Success Story</a>
+                                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button">Job Portal</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="addJobPost.php">Add Job Circular</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="allJobPost.php">All Job Circular</a></li>
+                                    </ul>
+                                </li>
+<!--                                success story-->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button">Success Story</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="successStory.php">Success Story</a></li>
                                         <li class="nav-item"><a class="nav-link" href="addSuccessStory.php">Add Success Story</a></li>
                                     </ul>
                                 </li>
+<!--                                Event-->
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button">Pages</a>
+                                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button">Event</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link dropdown-toggle" href="gallery.html" role="button">Gallery</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="single-album.html">Single Album</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item"><a class="nav-link" href="committee.html">Committee</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="directory.html">Directory</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-offcanvas.html">Off Canvas Menu</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="typography.html">Typography</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="allEvent.php">All Event</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="eventsAdd.php">Add Event</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+<!--                                make comitee member-->
+                                <?php
+                                if(isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in']== true
+                                && $_SESSION['user_details']->account_type==0 ){
+                                    ?>
+                                    <li class="nav-item active"><a class="nav-link" href="makeCommitteeMember.php">Admin</a></li>
+                                    <?php
+                                }
+                                ?>
+
+
+                                <li class="nav-item"><a class="nav-link" href="gallery.html" role="button">Gallery</a></li>
+                                <li class="nav-item"><a class="nav-link" href="contactList.php">Contacts</a></li>
                             </ul>
                         </div>
                     </nav>

@@ -12,7 +12,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     // process select = query
     $return = $conn->query($mysql);
-    // data get
     $obj = $return->fetch_object();
     // if i found 1 person
 
