@@ -9,7 +9,7 @@
                     <div class="single-widget-wrap">
                         <div class="widgei-body">
                             <div class="footer-about">
-                                <img src="../assets/frontend/assets/img/footer-logo.png" alt="Logo" class="img-fluid" />
+                                <img src="../backend/storage/default/logo.jpg" alt="Logo" class="img-fluid" />
                                 <p>We are legend Lorem ipsum dolor sitmet, nsecte ipisicing eit, sed do eiusmod tempor incidunt ut  et do maga aliqua enim ad minim.</p>
                                 <a href="#">Phone: +8745 44 5444</a> <a href="#">Fax: +88474 156 362</a> <br> <a href="#">Email: demoemail@demo.com</a>
                             </div>

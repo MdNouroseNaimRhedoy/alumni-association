@@ -75,17 +75,15 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
 
 //            echo $sql;
 
-
+            $conn->query($sql);
 
             echo "<script>alert('Successfully Posted')</script>";
-
+            echo "<script>location.assign('../frontend/allJobPost.php')</script>";
 
         } else {
             echo "<script>alert('Not Supported Image Format')</script>";
             echo "<script>location.assign('../frontend/addJobPost.php')</script>";
         }
-        $conn->query($sql);
-        echo "<script>location.assign('../frontend/allJobPost.php')</script>";
     }
 }
 else{

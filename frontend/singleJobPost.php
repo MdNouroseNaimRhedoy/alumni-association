@@ -28,9 +28,9 @@ include('header.php');
         <div class="container">
             <div class="row">
                 <?php
-                //                                echo '<pre>';
-                //                                print_r($_POST);
-                //                                echo '</pre>';
+//                                                echo '<pre>';
+//                                                print_r($_POST);
+//                                                echo '</pre>';
                 $job_id = $_POST['job_id'];
                 include("database/db_connect.php");
 
@@ -64,7 +64,7 @@ include('header.php');
                                     • Posted on: <a ><?php echo $job_details['created_at'] ?></a> <br><br>
                                     • Company Name: <a ><?php echo $job_details['company_name'] ?></a> <br><br>
                                     • Job Nature: <a ><?php echo $job_details['job_nature'] ?></a> <br><br>
-                                    • No. of vacancy: <a ><?php echo $job_details['job_nature'] ?></a> <br><br>
+                                    • No. of vacancy: <a ><?php echo $job_details['no_of_vacancy'] ?></a> <br><br>
                                     • Approximate Joining Date: <a ><?php echo $job_details['joining_date'] ?></a> <br><br>
                                     • Job Location: <a ><?php echo $job_details['job_location'] ?></a> <br><br>
                             </div>

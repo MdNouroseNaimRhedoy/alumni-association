@@ -138,7 +138,7 @@ session_start();
                 <div class="col-lg-12">
                     <nav class="main-menu navbar navbar-expand-lg navbar-light">
                         <a class="navbar-brand" href="index.php">
-                            <img src="../assets/frontend/assets/img/logo.png" alt="Logo" />
+                            <img src="../backend/storage/default/logo.jpg" alt="Logo" />
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menucontent" aria-controls="menucontent" aria-expanded="false">
                             <span class="navbar-toggler-icon"></span>
@@ -147,7 +147,7 @@ session_start();
                         <div class="collapse navbar-collapse" id="menucontent">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
 <!--                                Job post navbar-->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button">Job Portal</a>
@@ -183,7 +183,8 @@ session_start();
                                 ?>
 
 
-                                <li class="nav-item"><a class="nav-link" href="gallery.html" role="button">Gallery</a></li>
+<!--                                <li class="nav-item"><a class="nav-link" href="gallery.html" role="button">Gallery</a></li>-->
+                                <li class="nav-item"><a class="nav-link text-sm-right" href="anonymousReview.php" role="button">Company Review</a></li>
                                 <li class="nav-item"><a class="nav-link" href="contactList.php">Contacts</a></li>
                             </ul>
                         </div>

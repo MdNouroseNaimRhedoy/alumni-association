@@ -33,7 +33,6 @@ if (isset($_POST['event_name']) && isset($_POST['event_date']) && isset($_POST['
             $unique_file_name1 = md5(time() . rand()) . $file_name1;
             move_uploaded_file($file_temp_name1, 'storage/' . $unique_file_name1);
 
-            //who upload this
             session_start();
             $user_id = $_SESSION['user_details']->id;
             $alumni_id_fk = $_SESSION['user_details']->alumni_id_fk;
