@@ -82,6 +82,22 @@ include('header.php')
                                                 <input name="job_id" hidden value="<?php echo $item['job_id'] ?>">
                                                 <input type="submit" class="btn btn-brand" value="More">
                                             </form>
+
+                                             <?php
+                                             if ($_SESSION['user_details']->account_type == 0 || $_SESSION['user_details']->account_type == 1) {
+                                                 ?>
+                                                 <a href="editJobPost.php?job_id=<?php echo $item['job_id'] ?>"
+                                                    class="btn btn-brand text-white">
+                                                     Edit
+                                                 </a>
+                                                 <a href="../backend/deleteJobPost.php?job_id=<?php echo $item['job_id'] ?>"
+                                                    class="btn btn-brand text-white">
+                                                     Delete
+                                                 </a>
+                                                 <?php
+
+                                             }
+                                             ?>
                                         </div>
                                     </article>
                                 </div>

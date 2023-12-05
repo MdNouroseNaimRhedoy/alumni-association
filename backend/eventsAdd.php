@@ -69,8 +69,7 @@ if (isset($_POST['event_name']) && isset($_POST['event_date']) && isset($_POST['
             //change sql with photo
             $sql = "INSERT INTO `events`( `event_name`, `date`, `alumni_id_fk`, `photos_1`, `event_description`, `location`,`photos_2`)
                                 VALUES ('$event_name','$event_date','$alumni_id_fk','$unique_file_name1','$e_description','$location','$unique_file_name2')";
-        }
-        else {
+        } else {
             echo "<script>alert('Not Supported Image Format')</script>";
             echo "<script>location.assign('../frontend/eventsAdd.php')</script>";
         }
@@ -94,8 +93,7 @@ if (isset($_POST['event_name']) && isset($_POST['event_date']) && isset($_POST['
             //change sql with photo
             $sql = "INSERT INTO `events`( `event_name`, `date`, `alumni_id_fk`, `photos_1`, `event_description`, `location`,`photos_2`,`photos_3`)
                                 VALUES ('$event_name','$event_date','$alumni_id_fk','$unique_file_name1','$e_description','$location','$unique_file_name2','$unique_file_name3')";
-        }
-        else {
+        } else {
             echo "<script>alert('Not Supported Image Format')</script>";
             echo "<script>location.assign('../frontend/eventsAdd.php')</script>";
         }
@@ -103,7 +101,7 @@ if (isset($_POST['event_name']) && isset($_POST['event_date']) && isset($_POST['
     //            3rd image work ends
 //echo $sql;
 
-   $conn->query($sql);
+    $conn->query($sql);
 //    echo '<pre>';
 //    print_r($result);
 //    echo '</pre>';
