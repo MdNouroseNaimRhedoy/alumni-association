@@ -13,4 +13,4 @@ $sql = "INSERT INTO `company_review`(`company_name`, `company_website`, `review`
 $conn->query($sql);
 
 echo "<script>alert('Successfully Posted')</script>";
-echo "<script>location.assign('../frontend/index.php')</script>";
+echo "<script>location.assign('../frontend/anonymousReview.php')</script>";

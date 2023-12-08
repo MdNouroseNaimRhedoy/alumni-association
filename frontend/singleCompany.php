@@ -67,6 +67,7 @@ include('header.php');
                             </div>
                         </header>
                         <?php
+                        $result = [];
                         try{
 
                             $sql2 = "SELECT * FROM `company_review` WHERE company_name ='$company_name' and company_website='$company_website'";
@@ -82,7 +83,8 @@ include('header.php');
                         }?>
                         <section class="blog-details">
                             <?php
-                            while( $item = $result->fetch_assoc()) {
+                            if( $result) {
+                                while( $item = $result->fetch_assoc()) {
                             ?>
                             <div class="row">
                                 <div class="col-md-2">
@@ -95,6 +97,7 @@ include('header.php');
 
                             </div>
                             <?php
+                                }
                             }
                             ?>
                                 <div class="row">

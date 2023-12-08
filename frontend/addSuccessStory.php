@@ -3,7 +3,7 @@
 include('loginCheck.php');
 include('header.php');
 
-if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
     $details = $_SESSION['user_details'];
     if($details->account_type == '2'){
         echo"  <script> alert('You don\'t have permission!')</script>";

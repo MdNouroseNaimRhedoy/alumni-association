@@ -82,7 +82,7 @@ session_start();
     <div class="preheader-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-sm-7 col-7">
+                <div class="col-lg-4 col-sm-7 col-7">
                     <div class="preheader-left">
                         <?php
                         if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
@@ -104,15 +104,16 @@ session_start();
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-sm-5 col-5 text-right">
+                <div class="col-lg-8 col-sm-5 col-5 text-right">
                     <div class="preheader-right">
                         <?php
 //                                echo '<pre>';
 //                                print_r($_SESSION);
 //                                echo '/<pre>';
                         if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-                            echo '<a  class="btn-auth btn-auth-rev" >';
+                            echo '<a href="profile.php" class="btn-auth btn-auth-rev" > Profile </a>';
 
+                            echo '<a class="btn-auth btn-auth-rev" >';
                             echo $_SESSION['user_details']->name;
                             echo '</a>';
 

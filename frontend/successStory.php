@@ -72,6 +72,21 @@ include('header.php')
                                             <input name="id" hidden value="<?php echo $item[0] ?>">
                                             <input type="submit" class="btn btn-brand" value="More">
                                         </form>
+                                        <?php
+                                        if ($_SESSION['user_details']->account_type == 0 || $_SESSION['user_details']->account_type == 1) {
+                                            ?>
+                                            <a href="editSuccessStory.php?id=<?php echo $item[0] ?>"
+                                               class="btn btn-brand text-white">
+                                                Edit
+                                            </a>
+                                            <a href="../backend/deleteJobPost.php?id=<?php echo $item[0] ?>"
+                                               class="btn btn-brand text-white">
+                                                Delete
+                                            </a>
+                                            <?php
+
+                                        }
+                                        ?>
 
                                     </div>
                                 </article>

@@ -27,7 +27,7 @@ if ($_SESSION['user_details']->account_type == 0 || $_SESSION['user_details']->a
 } else {
     echo "<script> location.href='allJobPost.php'; </script>";
 }
-?>
+    ?>
 ?>
 
 <!--== Header Area End ==-->
