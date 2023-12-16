@@ -4,15 +4,9 @@ include('loginCheck.php');
 include('header.php');
 include('database/db_connect.php');
 
-// permission
-
-//if (isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-//    $details = $_SESSION['user_details'];
-//    if($details->account_type == '2' || $details->account_type == '1'){
-//        echo"  <script> alert('You don\'t have permission!')</script>";
-//        echo"  <script>location.assign('index.php')</script>";
-//    }
-//}
+/*echo '<pre>';
+echo print_r($_SESSION['user_details']);
+echo '</pre>';*/
 
 ?>
 
@@ -42,9 +36,7 @@ $users = $conn->query($sql);
 $number = $users->num_rows;
 
 
-//echo '<pre>';
-//echo print_r($users);
-//echo '</pre>';
+
 ?>
 <!-- /data dhore niye ashi-->
 
@@ -56,24 +48,6 @@ $number = $users->num_rows;
                 <div class="col-lg-12 text-center">
                     <div class="directory-text-wrap">
                         <h2>Now  we have <strong class="funfact-count"><?php echo $number ?></strong> member </h2>
-                        <!--                        search work not done-->
-
-                        <!--                        <div class="table-search-area">-->
-                        <!--                            <form action="https://codeboxr.net/themedemo/unialumni/html/index.html">-->
-                        <!--                                <input type="search" placeholder="Type Your Keyword">-->
-                        <!--                                <select name="dept">-->
-                        <!--                                    <option selected>Dept</option>-->
-                        <!--                                    <option value="cmt">Computer</option>-->
-                        <!--                                    <option value="cmt">Computer</option>-->
-                        <!--                                    <option value="cmt">Computer</option>-->
-                        <!--                                    <option value="cmt">Computer</option>-->
-                        <!--                                    <option value="cmt">Computer</option>-->
-                        <!--                                </select>-->
-                        <!--                                <button class="btn btn-brand">Search</button>-->
-                        <!--                            </form>-->
-                        <!--                        </div>-->
-
-                        <!--                        /search work not done-->
 
                         <div class="directory-table table-responsive">
                             <table class="table table-bordered">
@@ -116,7 +90,15 @@ $number = $users->num_rows;
                                             }
                                             ?></td>
                                         <td>
-                                            <a class="text-white btn btn-md btn-primary">Request No.</a>
+                                            <?php
+                                            $url = '../backend/sendContactRequestEmail.php';
+                                            $url .= '?recipientEmailAddress='.$user['email'];
+                                            $url .= '&recipientName='.$user['name'];
+                                            $url .= '&fromEmailAddress='.$_SESSION['user_details']->email;
+                                            $url .= '&contactNumber='.$_SESSION['user_details']->phone;
+                                            $url .= '&fullName='.$_SESSION['user_details']->name;
+                                            ?>
+                                            <a href="<?php echo $url ?>" class="text-white btn btn-md btn-primary">Request No.</a>
                                         </td>
                                     </tr>
                                     <?php

@@ -173,6 +173,14 @@ session_start();
                                         <li class="nav-item"><a class="nav-link" href="eventsAdd.php">Add Event</a></li>
                                     </ul>
                                 </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button">Fund Raising</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="allFundPosts.php">All Post</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="addFund.php">Add Fund Raising</a></li>
+                                    </ul>
+                                </li>
 <!--                                make comitee member-->
                                 <?php
                                 if(isset($_SESSION['user_details']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in']== true

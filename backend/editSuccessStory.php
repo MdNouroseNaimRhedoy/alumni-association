@@ -1,27 +1,21 @@
 <?php
 include('../frontend/loginCheck.php');
 
-/*echo '<pre>';
-print_r($_POST);
-echo '</pre>';*/
-
 //database connection code included
 include('../frontend/database/db_connect.php');
 
-if (isset($_POST['title']) && isset($_POST['content']) &&    isset($_POST['id'])){
+if (isset($_POST['title']) && isset($_POST['content']) && isset($_POST['id'])) {
     $id = $_POST['id'];
+    $title = $_POST['title'];
+    $content = str_replace("'", "\'", $_POST['content']);
 
-    $sqlDelete = "DELETE FROM success_story WHERE id = '$id'";
+    $sql = "UPDATE success_story 
+                    SET title = '$title', 
+                    content = '$content',
+                    WHERE id = '$id'";
 
-       /* echo '<pre>';
-        print_r($sqlDelete);
-        echo '</pre>';*/
+    if (is_uploaded_file($_FILES['cover_photo']['tmp_name'])) {
 
-        $conn->query($sqlDelete);
-
-    if (is_uploaded_file($_FILES['cover_photo']['tmp_name'])){
-        $title= $_POST['title'];
-        $content= str_replace("'","\'",$_POST['content']);
         //image details
         $file_name = $_FILES['cover_photo']['name'];
         $file_type = $_FILES['cover_photo']['type'];
@@ -36,21 +30,25 @@ if (isset($_POST['title']) && isset($_POST['content']) &&    isset($_POST['id'])
             $user_id = $_SESSION['user_details']->id;
 
             //change sql with photo
-            $sql = "INSERT INTO success_story (title, content, user_id_fk, cover_photo)
-            VALUES ('$title', '$content', '$user_id', '$unique_file_name')";
+            $sql = "UPDATE success_story 
+                    SET title = '$title', 
+                    content = '$content', 
+                    cover_photo = '$unique_file_name' 
+                    WHERE id = '$id'";
 
-            $conn->query($sql);
-
-            echo "<script>alert('Successfully Posted')</script>";
-            echo "<script>location.assign('../frontend/successStory.php')</script>";
 
         } else {
             echo "<script>alert('Not Supported Image Format')</script>";
             echo "<script>location.assign('../frontend/addSuccessStory.php')</script>";
         }
+
+        $conn->query($sql);
+
+        echo "<script>alert('Successfully Saved')</script>";
+        $redirectUrl = '../frontend/successStory.php';
+        echo "<script>location.assign('$redirectUrl')</script>";
     }
-}
-else{
+} else {
     echo "<script>alert('Please provide valid Title, Content')</script>";
     echo "<script>location.assign('../frontend/successStory.php')</script>";
 

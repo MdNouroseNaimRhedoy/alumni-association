@@ -1,15 +1,14 @@
 <?php
 
-echo '<pre>';
+/*echo '<pre>';
 print_r($_POST);
-echo '</pre>';
+echo '</pre>';*/
 
 //database connection code included
 include('../frontend/database/db_connect.php');
 
 // checking the values set or not and termsAndConditions is chekced
 if (isset($_POST['student_id'])
-    && isset($_POST['department'])
     && isset($_POST['email'])
     && isset($_POST['name']) && isset($_POST['dob'])
     && isset($_POST['phone']) && isset($_POST['password'])
@@ -20,24 +19,19 @@ if (isset($_POST['student_id'])
     && isset($_POST['c_website'])
 ) {
     $student_id = $_POST['student_id'];
-    $department = '';
     $cgpa = $_POST['cgpa'];
     $c_name = $_POST['c_name'];
     $c_website = $_POST['c_website'];
 
     //sql if photo is not uploaded
     $sql = "UPDATE alumni
-        SET department = '$department',
-            cgpa = '$cgpa',
+        SET cgpa = '$cgpa',
             company_name = '$c_name',
             company_website = '$c_website'
         WHERE student_id = '$student_id'";
 
 
     if (is_uploaded_file($_FILES['photo']['tmp_name'])) {
-//        echo '<pre>';
-//        print_r($_FILES);
-//        echo '</pre>';
         $file_name = $_FILES['photo']['name'];
         $file_type = $_FILES['photo']['type'];
         $file_temp_name = $_FILES['photo']['tmp_name'];
@@ -50,14 +44,12 @@ if (isset($_POST['student_id'])
 
             //change sql with photo
             $sql = "UPDATE alumni
-        SET department = '$department',
-            cgpa = '$cgpa',
+        SET cgpa = '$cgpa',
             photo = '$unique_file_name',
             company_name = '$c_name',
             company_website = '$c_website'
         WHERE student_id = '$student_id'";
 
-            echo $sql;
         } else {
             echo "<script>alert('Not Supported Image Format')</script>";
         }
@@ -65,17 +57,13 @@ if (isset($_POST['student_id'])
 
     try {
         $conn->query($sql);
-        $email = $_POST['email'];
 
+        $email = $_POST['email'];
         $name = $_POST['name'];
         $dob = $_POST['dob'];
         $gender = $_POST['gender'];
-
-//        $conn->query($company_sql);
-
         $address = $_POST['address'];
         $phone = $_POST['phone'];
-
         $alumni_id_fk = $student_id;
 
         $sql = "UPDATE users
@@ -88,7 +76,7 @@ if (isset($_POST['student_id'])
             phone = '$phone'
         WHERE alumni_id_fk = '$alumni_id_fk'";
 
-        if (isset($_POST['password'])) {
+        if ($_POST['password'] != '') {
             $password = password_hash(md5($_POST['password']), PASSWORD_DEFAULT);
 
             $sql = "UPDATE users
@@ -106,13 +94,11 @@ if (isset($_POST['student_id'])
         $conn->query($sql);
 
         echo "<script>alert('Successful')</script>";
-
-        include('../frontend/logout.php');
+        echo"  <script>location.assign('../frontend/profile.php')</script>";
 
     } catch (Exception $ex) {
-        echo "<script>alert('Email/Student Id/phone is not unique')</script>";
+        echo "<script>alert('Something went wrong')</script>";
     }
-    echo "<script>location.assign('../frontend/register.php')</script>";
 }
 
 

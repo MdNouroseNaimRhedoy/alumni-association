@@ -37,17 +37,11 @@ $user = $result->fetch_assoc();
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label for="register_name">Department</label> <br>
-                                        <select name="department" id="exampleFormControlSelect1">
-                                            <option <?php if ($user['department'] == 'cse') echo 'selected' ?>
-                                                    value="cse">CSE
-                                            </option>
-                                            <option <?php if ($user['department'] == 'eee') echo 'selected' ?>
-                                                    value="eee">EEE
-                                            </option>
-                                            <option <?php if ($user['department'] == 'bba') echo 'selected' ?>
-                                                    value="bba">BBA
-                                            </option>
-                                        </select>
+                                        <input type="text"
+                                               class="form-control"
+                                               disabled
+                                               value="<?php echo strtoupper($user['department']) ?>"
+                                        />
                                     </div>
                                 </div>
 

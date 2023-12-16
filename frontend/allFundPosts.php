@@ -11,8 +11,8 @@ include('header.php')
         <div class="row">
             <div class="col-lg-8 m-auto text-center">
                 <div class="page-title-content">
-                    <h1 class="h2">Success Story</h1>
-                    <p>Success Story That Inspires thousands.</p>
+                    <h1 class="h2">Fund Raising Campaigns</h1>
+                    <p>Ashun Dan Kori.</p>
                     <a href="#page-content-wrap" class="btn btn-brand smooth-scroll">Let's See</a>
                 </div>
             </div>
@@ -34,51 +34,51 @@ include('header.php')
 
                             <?php
                             include('database/db_connect.php');
-                            $sql = "SELECT * FROM success_story";
+                            $sql = "SELECT * FROM fund";
                             $result = $conn->query($sql);
-                            $stories = $result->fetch_all();
+                            $funds = $result->fetch_all();
 //                            echo gettype($stories);
                             ?>
                             <!--== Single Blog Post start ==-->
-                            <?php foreach ($stories as $item) {
+                            <?php foreach ($funds as $item) {
                                 ?>
                             <div class="col-lg-6 col-md-6">
                                 <article class="single-blog-post">
                                     <figure class="blog-thumb">
                                         <div class="blog-thumbnail">
-                                            <img src="../backend/storage/<?php echo $item[3] ?>" alt="Blog" class="img-fluid" />
+                                            <img src="../backend/storage/<?php echo $item[8] ?>" alt="Blog" class="img-fluid" />
                                         </div>
                                     </figure>
 
                                     <div class="blog-content">
-                                        <h3><a ><?php echo substr($item[1],0,45) ?>.....</a></h3>
-                                        <p><?php echo substr($item[2],0,200) ?>...</p>
-                                        <form method="post" action="singleSuccessStory.php">
-                                            <input name="id" hidden value="<?php echo $item[0] ?>">
-                                            <input type="submit" class="btn btn-brand" value="More">
-                                        </form>
-                                        <?php
-                                        if ($_SESSION['user_details']->account_type == 0 || $_SESSION['user_details']->account_type == 1) {
-                                            ?>
-                                            <a href="editSuccessStory.php?id=<?php echo $item[0] ?>"
-                                               class="btn btn-brand text-white">
-                                                Edit
-                                            </a>
-                                            <a href="../backend/deleteSuccessStory.php?id=<?php echo $item[0] ?>"
-                                               class="btn btn-brand text-white">
-                                                Delete
-                                            </a>
-                                            <?php
-
-                                        }
-                                        ?>
-
+                                        <h3><a ><?php echo substr($item[2],0,45) ?>.....</a></h3>
+                                        <a href="<?php echo 'singleFundPost.php?id='.$item[0] ?>" class="btn btn-brand">More</a>
                                     </div>
                                 </article>
                             </div>
                             <?php } ?>
                             <!--== Single Blog Post End ==-->
                         </div>
+
+                        <!-- Pagination Start -->
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-12">-->
+<!--                                <div class="pagination-wrap text-center">-->
+<!--                                    <nav>-->
+<!--                                        <ul class="pagination">-->
+<!--                                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>-->
+<!--                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">...</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">50</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>-->
+<!--                                        </ul>-->
+<!--                                    </nav>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!-- Pagination End -->
                     </div>
                 </div>
                 <!-- Blog content Area End -->
