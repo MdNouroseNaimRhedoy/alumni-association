@@ -11,7 +11,7 @@ if (isset($_POST['title']) && isset($_POST['content']) && isset($_POST['id'])) {
 
     $sql = "UPDATE success_story 
                     SET title = '$title', 
-                    content = '$content',
+                    content = '$content'
                     WHERE id = '$id'";
 
     if (is_uploaded_file($_FILES['cover_photo']['tmp_name'])) {
@@ -41,13 +41,12 @@ if (isset($_POST['title']) && isset($_POST['content']) && isset($_POST['id'])) {
             echo "<script>alert('Not Supported Image Format')</script>";
             echo "<script>location.assign('../frontend/addSuccessStory.php')</script>";
         }
-
-        $conn->query($sql);
-
-        echo "<script>alert('Successfully Saved')</script>";
-        $redirectUrl = '../frontend/successStory.php';
-        echo "<script>location.assign('$redirectUrl')</script>";
     }
+
+    $conn->query($sql);
+    echo "<script>alert('Successfully Saved')</script>";
+    $redirectUrl = '../frontend/successStory.php';
+    echo "<script>location.assign('$redirectUrl')</script>";
 } else {
     echo "<script>alert('Please provide valid Title, Content')</script>";
     echo "<script>location.assign('../frontend/successStory.php')</script>";

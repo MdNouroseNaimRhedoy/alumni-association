@@ -69,7 +69,6 @@ if (isset($_POST['student_id'])
         $sql = "UPDATE users
         SET email = '$email',
             name = '$name',
-            account_type = '2',
             dob = '$dob',
             gender = '$gender',
             address = '$address',
@@ -83,7 +82,6 @@ if (isset($_POST['student_id'])
         SET password = '$password',
             email = '$email',
             name = '$name',
-            account_type = '2',
             dob = '$dob',
             gender = '$gender',
             address = '$address',

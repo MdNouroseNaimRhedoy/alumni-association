@@ -64,7 +64,7 @@ include('header.php')
 <!--                                                        <img src="assets/img/blog/author.jpg" alt="Author">-->
 <!--                                                    </div>-->
                                                     <div class="author-info">
-                                                        <h4 style="color: #edfff4">Designation: <?php echo substr($item['designation'], 0, 15) ?></h4>
+                                                        <h4 style="color: #edfff4">Designation: <?php echo substr($item['designation'], 0, 25) ?></h4>
                                                         <p>Posted on:<?php echo $item['created_at'] ?> </p>
                                                         <p>Last Date Of Application:<?php echo $item['last_date_of_application'] ?> </p>
                                                     </div>

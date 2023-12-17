@@ -11,8 +11,8 @@ include('header.php');
         <div class="row">
             <div class="col-lg-8 m-auto text-center">
                 <div class="page-title-content">
-                    <h1 class="h2">Single Job Post</h1>
-                    <p>Tumi job paba na</p>
+                    <h1 class="h2">Single Fund</h1>
+                    <p>Ditei hobe tk.</p>
                     <a href="#page-content-wrap" class="btn btn-brand smooth-scroll">Let's See</a>
                 </div>
             </div>
@@ -44,7 +44,7 @@ include('header.php');
                             <div class="single-blog-thumb">
                                 <?php if($fund_details['cover_photo']== null){
                                     ?>
-                                    <img src="../backend/storage/default/default%20job%20post.jpg" class="img-fluid"
+                                    <img src="../backend/storage/default/fund_raising.jpg" class="img-fluid"
                                          alt="Blog">
                                     <?php
                                 }
@@ -77,14 +77,14 @@ include('header.php');
                                     <h3>End Date:</h3>
                                     <p> <?php echo $fund_details['end_date'];?></p>
                                 </div>
-                                <div class="col-2 text-right">
+                                <div class="col-2">
                                     <?php if($fund_details['goal_amount'] > $fund_details['current_amount'])
                                     {
                                         ?>
                                     <form action="../backend/pay.php" method="post">
                                         <input type="text" name="fund_id" value="<?php echo $fund_details['id'] ?>" hidden>
-                                        <input type="number" name="amount" >
-                                    <button type="submit" class="btn btn-lg btn-info">
+                                        <input type="number" name="amount" class="form-control" >
+                                    <button  type="submit" class="btn btn-lg btn-info">
                                         Pay!!
                                     </button>
                                     </form>

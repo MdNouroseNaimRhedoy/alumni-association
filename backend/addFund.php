@@ -20,7 +20,7 @@ if (
     && isset($_POST['goal_amount'])
 ){
     $title = $_POST['title'];
-    $description = $_POST['description'];
+    $description= str_replace("'","\'",$_POST['description']);
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
     $goal_amount = $_POST['goal_amount'];
@@ -55,16 +55,16 @@ if (
 
         } else {
             echo "<script>alert('Not Supported Image Format')</script>";
-            echo "<script>location.assign('../frontend/addJobPost.php')</script>";
+            echo "<script>location.assign('../frontend/allFundPosts.php')</script>";
         }
     }
 
     $conn->query($sql);
 
     echo "<script>alert('Successfully Posted')</script>";
-    echo "<script>location.assign('../frontend/allJobPost.php')</script>";
+    echo "<script>location.assign('../frontend/allFundPosts.php')</script>";
 }
 else{
     echo "<script>alert('Please provide valid Info')</script>";
-    echo "<script>location.assign('../frontend/addJobPost.php')</script>";
+    echo "<script>location.assign('../frontend/allFundPosts.php')</script>";
 }

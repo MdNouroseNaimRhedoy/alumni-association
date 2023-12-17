@@ -18,7 +18,7 @@ if (isset($_POST['event_name']) && isset($_POST['event_date']) && isset($_POST['
     $event_date = $_POST['event_date'];
 
     $location = $_POST['location'];
-    $e_description = $_POST['e_description'];
+    $e_description= str_replace("'","\'",$_POST['e_description']);
 
     if (is_uploaded_file($_FILES['cover_photo1']['tmp_name'])) {
 

@@ -21,10 +21,10 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
     $job_id = $_POST['job_id'];
     $designation = $_POST['designation'];
     $salary = $_POST['salary'];
-    $skills = $_POST['skills'];
+    $skills = str_replace("'","\'",$_POST['skills']);
     $last_date_of_application = $_POST['last_date_of_application'];
-    $res = $_POST['res'];
-    $contact = $_POST['contact'];
+    $res = str_replace("'","\'",$_POST['res']);
+    $contact = str_replace("'","\'",$_POST['contact']);
     $job_nature=$_POST['job_nature'];
     $link=$_POST['link'];
     $company=$_POST['company'];
@@ -42,16 +42,31 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
 
     $today_date = $date->format('Y/m/d');
 
-    $sqlDelete = "DELETE FROM jobs WHERE job_id = '$job_id'";
-    $conn->query($sqlDelete);
+    /*$sqlDelete = "DELETE FROM jobs WHERE job_id = '$job_id'";
+    $conn->query($sqlDelete);*/
 
 //    $sql = "INSERT INTO `jobs`
 //        ( `designation`, `salary`, `last_date_of_application`, `skill_requirement`, `contact_info`, `alumni_id_fk`, `responsibilities`,`created_at`)
 //VALUES ('$designation','$salary','$last_date_of_application','$skills','$contact','$alumni_id','$res','$today_date')";
-    $sql = "INSERT INTO `jobs`(`created_at`, `designation`, `salary`, `last_date_of_application`, `skill_requirement`, `contact_info`, `alumni_id_fk`, 
-                   `responsibilities`,`job_nature`, `apply_link`, `company_name`, `job_location`, `experience`, `no_of_vacancy`, `joining_date`, `email_for_online_cv`) 
-                    VALUES ('$today_date','$designation','$salary','$last_date_of_application','$skills','$contact','$alumni_id','$res',
-                    '$job_nature','$link','$company','$location','$experience','$vacancy','$joining_date','$cv_email')";
+    $sql = "UPDATE `jobs` SET
+        `created_at` = '$today_date',
+        `designation` = '$designation',
+        `salary` = '$salary',
+        `last_date_of_application` = '$last_date_of_application',
+        `skill_requirement` = '$skills',
+        `contact_info` = '$contact',
+        `alumni_id_fk` = '$alumni_id',
+        `responsibilities` = '$res',
+        `job_nature` = '$job_nature',
+        `apply_link` = '$link',
+        `company_name` = '$company',
+        `job_location` = '$location',
+        `experience` = '$experience',
+        `no_of_vacancy` = '$vacancy',
+        `joining_date` = '$joining_date',
+        `email_for_online_cv` = '$cv_email'
+        WHERE `job_id` = '$job_id'";
+
 //    echo $sql;
 
     if (is_uploaded_file($_FILES['cover_photo']['tmp_name'])){
@@ -66,10 +81,26 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
             move_uploaded_file($file_temp_name, 'storage/' . $unique_file_name);
 
             //change sql with photo
-            $sql = "INSERT INTO `jobs`(`created_at`, `designation`, `salary`, `last_date_of_application`, `skill_requirement`, `contact_info`, `photo`, `alumni_id_fk`, 
-                   `responsibilities`,`job_nature`, `apply_link`, `company_name`, `job_location`, `experience`, `no_of_vacancy`, `joining_date`, `email_for_online_cv`) 
-                    VALUES ('$today_date','$designation','$salary','$last_date_of_application','$skills','$contact','$unique_file_name','$alumni_id','$res',
-                    '$job_nature','$link','$company','$location','$experience','$vacancy','$joining_date','$cv_email')";
+            $sql = "UPDATE `jobs` SET
+        `created_at` = '$today_date',
+        `designation` = '$designation',
+        `salary` = '$salary',
+        `last_date_of_application` = '$last_date_of_application',
+        `skill_requirement` = '$skills',
+        `contact_info` = '$contact',
+        `photo` = '$unique_file_name',
+        `alumni_id_fk` = '$alumni_id',
+        `responsibilities` = '$res',
+        `job_nature` = '$job_nature',
+        `apply_link` = '$link',
+        `company_name` = '$company',
+        `job_location` = '$location',
+        `experience` = '$experience',
+        `no_of_vacancy` = '$vacancy',
+        `joining_date` = '$joining_date',
+        `email_for_online_cv` = '$cv_email'
+        WHERE `job_id` = '$job_id'";
+
 
 //            $sql = "INSERT INTO `jobs`
 //        ( `designation`, `salary`, `last_date_of_application`, `skill_requirement`, `contact_info`, `alumni_id_fk`, `responsibilities`,`created_at`,
@@ -80,19 +111,21 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
 
 //            echo $sql;
 
-            $conn->query($sql);
 
-            echo "<script>alert('Successfully Posted')</script>";
-            echo "<script>location.assign('../frontend/allJobPost.php')</script>";
+
 
         } else {
             echo "<script>alert('Not Supported Image Format')</script>";
             echo "<script>location.assign('../frontend/addJobPost.php')</script>";
         }
     }
+
+    $conn->query($sql);
+
+    echo "<script>alert('Successfully Posted')</script>";
+    echo "<script>location.assign('../frontend/allJobPost.php')</script>";
 }
 else{
     echo "<script>alert('Please provide valid Info')</script>";
     echo "<script>location.assign('../frontend/addJobPost.php')</script>";
-
 }

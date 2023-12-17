@@ -31,7 +31,6 @@ include('header.php')
                 <div class="">
                     <div class="blog-page-contant-start">
                         <div class="row">
-
                             <?php
                             include('database/db_connect.php');
                             $sql = "SELECT * FROM fund";
@@ -41,7 +40,15 @@ include('header.php')
                             ?>
                             <!--== Single Blog Post start ==-->
                             <?php foreach ($funds as $item) {
+
+                                $timezone = new DateTimeZone("Asia/Dhaka" );
+                                $date = new DateTime();
+                                $date->setTimezone($timezone);
+                                $today_date = $date->format('Y-m-d');
+
+                                if($item[4] >= $today_date) {
                                 ?>
+
                             <div class="col-lg-6 col-md-6">
                                 <article class="single-blog-post">
                                     <figure class="blog-thumb">
@@ -51,15 +58,16 @@ include('header.php')
                                     </figure>
 
                                     <div class="blog-content">
-                                        <h3><a ><?php echo substr($item[2],0,45) ?>.....</a></h3>
+                                        <h3><a ><?php echo substr($item[1],0,45) ?>...</a></h3>
                                         <a href="<?php echo 'singleFundPost.php?id='.$item[0] ?>" class="btn btn-brand">More</a>
                                     </div>
                                 </article>
                             </div>
-                            <?php } ?>
+
+                            <?php }
+                                } ?>
                             <!--== Single Blog Post End ==-->
                         </div>
-
                         <!-- Pagination Start -->
 <!--                        <div class="row">-->
 <!--                            <div class="col-lg-12">-->

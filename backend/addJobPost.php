@@ -19,9 +19,9 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
 ){
     $designation = $_POST['designation'];
     $salary = $_POST['salary'];
-    $skills = $_POST['skills'];
+    $skills= str_replace("'","\'",$_POST['skills']);
     $last_date_of_application = $_POST['last_date_of_application'];
-    $res = $_POST['res'];
+    $res= str_replace("'","\'",$_POST['res']);
     $contact = $_POST['contact'];
     $job_nature=$_POST['job_nature'];
     $link=$_POST['link'];
@@ -47,7 +47,8 @@ if (isset($_POST['designation']) && isset($_POST['salary']) && isset($_POST['ski
                    `responsibilities`,`job_nature`, `apply_link`, `company_name`, `job_location`, `experience`, `no_of_vacancy`, `joining_date`, `email_for_online_cv`) 
                     VALUES ('$today_date','$designation','$salary','$last_date_of_application','$skills','$contact','$alumni_id','$res',
                     '$job_nature','$link','$company','$location','$experience','$vacancy','$joining_date','$cv_email')";
-//    echo $sql;
+    /*echo $sql;
+    return 0;*/
 
     if (is_uploaded_file($_FILES['cover_photo']['tmp_name'])){
         //image details
